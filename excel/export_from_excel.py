@@ -26,7 +26,7 @@ def clear_struct(name: str) -> List[str]:
     return result
 
 
-def validate_date(value, field, full_name=None):
+def validate_date(value: str, field: str, full_name=None) -> bool:
 
     # Don't use \w because it include number.
     if value == '':
@@ -59,10 +59,8 @@ def append_obj(row: List[str], headers: List[str], main_struct: List[str]
                ) -> tuple[bool, str]:
     """Add result of check data and row with data in str format."""
 
-    data_str = ''
-    user_add_info = ''
-    fields_in_main_struct = []
-    validate = []
+    data_str, user_add_info = '', ''
+    fields_in_main_struct, validate = [], []
 
     # basic data
     for index, field in enumerate(main_struct):
@@ -98,6 +96,7 @@ def append_obj(row: List[str], headers: List[str], main_struct: List[str]
 
 
 def write_csv(validate: bool, data: str) -> None:
+
     mode = 'a'
     if DEBUG:
         mode = 'w'
